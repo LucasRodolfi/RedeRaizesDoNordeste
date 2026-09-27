@@ -51,7 +51,9 @@ app.include_router(dashboard.router)
 app.include_router(pagamentos.router)
 
 @app.get("/")
-def inicio(): return {"mensagem": "API Raizes do Nordeste-Lucas"}
-
-@app.get("/health")
-def health(): return {"status": "ok"}
+def root():
+    return {
+        "mensagem": "API Raízes do Nordeste rodando",
+        "docs": "/docs",
+        "swagger": "http://localhost:8000/docs"
+    }
