@@ -56,3 +56,10 @@ POST /pagamentos/mock/{pedidoId} - retorna transacaoId MOCK
 campo canalPedido obrigatório em pedidos para rastreabilidade multicanal
 estoque por unidade via tabela estoques
 pagamento mock 80% APROVADO 20% RECUSADO com idempotência
+
+## Como rodar os testes
+1.uvicorn main:app --reload
+2.Importar Rede Raizes - Fluxo A.postman_collection.json que esta na pasta tests no postman
+3.Rodar na ordem T01 -> T15
+4.Seed: T03, T04, T05 devem ser rodados antes do T06
+

@@ -13,7 +13,7 @@ router = APIRouter(prefix="/auth", tags=["Auth"])
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 SECRET_KEY = "segredo-raizes-2026"
 ALGORITHM = "HS256"
-security = HTTPBearer()
+security = HTTPBearer() 
 
 def criar_token(dados: dict):
     exp = datetime.now(timezone.utc) + timedelta(minutes=60)

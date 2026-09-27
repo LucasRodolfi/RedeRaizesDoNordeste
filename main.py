@@ -57,3 +57,14 @@ def root():
         "docs": "/docs",
         "swagger": "http://localhost:8000/docs"
     }
+from datetime import datetime
+
+@app.get("/health", tags=["Monitoramento"])
+def health_check():
+    return {
+        "status": "ok",
+        "timestamp": datetime.now().isoformat(),
+        "api": "up",
+        "database": "up",
+        "version": "1.0.0"
+    }

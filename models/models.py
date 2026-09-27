@@ -31,15 +31,15 @@ class Produto(Base):
 class Estoque(Base):
     __tablename__ = "estoques"
     id = Column(Integer, primary_key=True)
-    produtos_id = Column(Integer, ForeignKey("produtos.id"))
-    unidades_id = Column(Integer, ForeignKey("unidades.id"))
+    produto_id = Column(Integer, ForeignKey("produtos.id"))
+    unidade_id = Column(Integer, ForeignKey("unidades.id"))
     quantidade = Column(Integer, default=0)
 
 class Pedido(Base):
     __tablename__ = "pedidos"
     id = Column(Integer, primary_key=True, index=True)
-    usuarios_id = Column(Integer, ForeignKey("usuarios.id"))
-    unidades_id = Column(Integer, ForeignKey("unidades.id"))
+    cliente_id = Column(Integer, ForeignKey("usuarios.id"))
+    unidade_id = Column(Integer, ForeignKey("unidades.id"))
     canal_pedido = Column(String)
     forma_pagamento = Column(String, default="PIX")
     status = Column(String, default="AGUARDANDO_PAGAMENTO")
@@ -51,8 +51,8 @@ class Pedido(Base):
 class ItemPedido(Base):
     __tablename__ = "itens_pedido"
     id = Column(Integer, primary_key=True)
-    pedidos_id = Column(Integer, ForeignKey("pedidos.id"))
-    produtos_id = Column(Integer, ForeignKey("produtos.id"))
+    pedido_id = Column(Integer, ForeignKey("pedidos.id"))
+    produto_id = Column(Integer, ForeignKey("produtos.id"))
     quantidade = Column(Integer)
     preco_unitario = Column(Float)
     pedido = relationship("Pedido", back_populates="itens")
@@ -60,7 +60,7 @@ class ItemPedido(Base):
 class PagamentoMock(Base):
     __tablename__ = "pagamentos_mock"
     id = Column(Integer, primary_key=True)
-    pedidos_id = Column(Integer, ForeignKey("pedidos.id"))
+    pedido_id = Column(Integer, ForeignKey("pedidos.id"))
     forma_pagamento = Column(String)
     status = Column(String)
     valor = Column(Float)
@@ -70,7 +70,7 @@ class PagamentoMock(Base):
 class MovimentoFidelidade(Base):
     __tablename__ = "fidelidades"
     id = Column(Integer, primary_key=True)
-    usuarios_id = Column(Integer, ForeignKey("usuarios.id"))
+    cliente_id = Column(Integer, ForeignKey("usuarios.id"))
     tipo = Column(String)
     pontos = Column(Integer)
     descricao = Column(String)
